@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <!-- <ion-title>Announcement</ion-title> -->
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle>
+        <ion-item routerLink="/login">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Login
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-content>
+  </ion-menu>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Announcement</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <app-list-announcement
+          *ngFor="let notice of getNotices()"
+          [notice]="notice"
+        ></app-list-announcement>
+      </ion-list>
+
+      <!-- Tap the button in the toolbar to open the menu. -->
+    </ion-content>
+  </div>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button href="/add-notice">
+    <ion-icon name="megaphone-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

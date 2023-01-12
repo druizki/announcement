@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="notice">
+  <ion-item>
+    <ion-icon name="person-circle" color="primary"></ion-icon>
+    <ion-label class="ion-text-wrap">
+      <h2>
+        Admin
+        <span class="date">
+          <ion-note>{{ dateFormat(notice.createdAt) }}</ion-note>
+        </span>
+      </h2>
+      <h3>To: <ion-note>Everyone</ion-note></h3>
+    </ion-label>
+  </ion-item>
+
+  <div class="ion-padding">
+    <h1>{{ notice.title }}</h1>
+    <p>{{ notice.content }}</p>
+  </div>
+</ion-content>
