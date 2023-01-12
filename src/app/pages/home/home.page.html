@@ -7,10 +7,10 @@
     </ion-header>
     <ion-content>
       <ion-menu-toggle *ngIf="isAuthenticated; else login ">
-        <ion-item routerLink="/manage">
+        <!-- <ion-item routerLink="/list">
           <ion-icon name="cog-outline" slot="start"></ion-icon>
           Manage Notices
-        </ion-item>
+        </ion-item> -->
         <ion-item class="logout" (click)="logout()">
           <ion-icon name="log-out-outline" slot="start"></ion-icon>
           Logout
@@ -42,8 +42,6 @@
           [notice]="notice"
         ></app-list-announcement>
       </ion-list>
-
-      <!-- Tap the button in the toolbar to open the menu. -->
     </ion-content>
   </div>
 </ion-content>

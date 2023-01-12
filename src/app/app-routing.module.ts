@@ -25,12 +25,22 @@ const routes: Routes = [
   {
     path: 'notice/:id',
     loadChildren: () =>
-      import('./pages/detail/detail.module').then((m) => m.DetailPageModule),
+      import('./pages/notice/detail/detail.module').then(
+        (m) => m.DetailPageModule
+      ),
   },
   {
     path: 'create',
     loadChildren: () =>
-      import('./pages/create/create.module').then((m) => m.CreatePageModule),
+      import('./pages/notice/create/create.module').then(
+        (m) => m.CreatePageModule
+      ),
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'edit/:id',
+    loadChildren: () =>
+      import('./pages/notice/edit/edit.module').then((m) => m.EditPageModule),
     canLoad: [AuthGuard],
   },
 ];

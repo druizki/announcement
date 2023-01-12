@@ -38,7 +38,6 @@ export class CreatePage implements OnInit {
       })
       .subscribe(
         ({ data }) => {
-          console.log(data);
           this.router.navigate(['/']).then(() => {
             window.location.reload();
           });

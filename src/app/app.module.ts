@@ -23,14 +23,14 @@ export function createApollo(httpLink: HttpLink) {
   }));
 
   const auth = setContext((operation, context) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('AUTH_TOKEN');
 
     if (token === null) {
       return {};
     } else {
       return {
         headers: {
-          Authorization: `JWT ${token}`,
+          Authorization: token,
         },
       };
     }

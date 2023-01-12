@@ -1,7 +1,20 @@
-<ion-item *ngIf="notice" [routerLink]="'/notice/' + notice.id" [detail]="false">
+<ion-item *ngIf="notice" [detail]="false">
   <!-- <div slot="start" [class]="!message.read ? 'dot dot-unread' : 'dot'"></div> -->
-  <div slot="start"></div>
-  <ion-label class="ion-text-wrap">
+  <div slot="start">
+    <ion-button (click)="presentActionSheet(notice.id)" fill="clear">
+      <ion-icon
+        slot="icon-only"
+        name="ellipsis-vertical"
+        *ngIf="isAuthenticated"
+      ></ion-icon>
+    </ion-button>
+    <!-- <ion-icon
+      name="ellipsis-vertical"
+      size="small"
+      *ngIf="isAuthenticated"
+    ></ion-icon> -->
+  </div>
+  <ion-label class="ion-text-wrap" [routerLink]="'/notice/' + notice.id">
     <h2>
       Admin
       <span class="date">
