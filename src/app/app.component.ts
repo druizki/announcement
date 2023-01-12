@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   constructor() {}
+
+  public isLoggedIn() {
+    const token = localStorage.getItem('AUTH_TOKEN');
+    return token ? true : false;
+  }
 }

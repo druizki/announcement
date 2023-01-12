@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 const LOGIN = gql`
   query AuthenticateUser($email: String!, $password: String!) {
@@ -20,19 +22,28 @@ export class LoginPage implements OnInit {
     password: '',
   };
 
-  constructor(private apollo: Apollo) {}
+  constructor(
+    private apollo: Apollo,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
-  login() {
-    this.apollo
-      .watchQuery({
-        query: LOGIN,
-        variables: this.loginForm,
-      })
-      .valueChanges.subscribe((result: any) => {
-        const token = result.data.authenticateUser.token;
-        localStorage.setItem('AUTH_TOKEN', token);
-      });
+  async login() {
+    await this.authService.login(this.loginForm);
+
+    // this.apollo
+    //   .watchQuery({
+    //     query: LOGIN,
+    //     variables: this.loginForm,
+    //   })
+    //   .valueChanges.subscribe((result: any) => {
+    //     const token = result.data.authenticateUser.token;
+    //     localStorage.setItem('AUTH_TOKEN', token);
+    //     this.router.navigateByUrl('/').then(() => {
+    //       window.location.reload();
+    //     });
+    //   });
   }
 }

@@ -6,12 +6,24 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-menu-toggle>
-        <ion-item routerLink="/login">
-          <ion-icon name="log-in-outline" slot="start"></ion-icon>
-          Login
+      <ion-menu-toggle *ngIf="isAuthenticated; else login ">
+        <ion-item routerLink="/manage">
+          <ion-icon name="cog-outline" slot="start"></ion-icon>
+          Manage Notices
+        </ion-item>
+        <ion-item class="logout" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Logout
         </ion-item>
       </ion-menu-toggle>
+      <ng-template #login>
+        <ion-menu-toggle>
+          <ion-item routerLink="/login">
+            <ion-icon name="log-in-outline" slot="start"></ion-icon>
+            Login
+          </ion-item>
+        </ion-menu-toggle>
+      </ng-template>
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
@@ -36,8 +48,13 @@
   </div>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button href="/add-notice">
+<ion-fab
+  *ngIf="isAuthenticated"
+  vertical="bottom"
+  horizontal="end"
+  slot="fixed"
+>
+  <ion-fab-button href="/create">
     <ion-icon name="megaphone-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
